@@ -32,12 +32,12 @@ class LList
 
     Node *head = NULL;
     int len = 0;
-    Node *recrevhelper(Node *temphead)
+    Node *recRevHelper(Node *temphead)
     {
         if (temphead == NULL || temphead->next == NULL)
             return temphead;
 
-        Node *newHead = recrevhelper(temphead->next);
+        Node *newHead = recRevHelper(temphead->next);
 
         temphead->next->next = temphead;
         temphead->next = NULL;
@@ -93,7 +93,7 @@ public:
         len++;
     }
 
-    void addbw(int val, int pos)
+    void addBetween(int val, int pos)
     {
         if (pos > len)
             return;
@@ -153,7 +153,7 @@ public:
         len--;
     }
 
-    void delbw(int pos)
+    void delBetween(int pos)
     {
         if (pos > len || pos < 1)
             return;
@@ -206,7 +206,7 @@ public:
 
     void recrev()
     {
-        head = this->recrevhelper(head);
+        head = this->recRevHelper(head);
     }
 
     // bool isPalindrome() // no extra space used
@@ -217,15 +217,15 @@ public:
     //     Node *ptr = head;
     //     while (mid--)
     //         ptr = ptr->next;
-    //     Node *nehead = recrevhelper(ptr);
-    //     Node *fistptr = head;
+    //     Node *newhead = recRevHelper(ptr);
+    //     Node *firstptr = head;
     //     this->print();
-    //     while (nehead != NULL)
+    //     while (newhead != NULL)
     //     {
-    //         if (fistptr->data != nehead->data)
+    //         if (firstptr->data != newhead->data)
     //             return false;
-    //         fistptr = fistptr->next;
-    //         nehead = nehead->next;
+    //         firstptr = firstptr->next;
+    //         newhead = newhead->next;
     //     }
     //     return true;
     // }
@@ -268,11 +268,11 @@ int main()
     list.addFirst(3);
     list.addFirst(2);
     list.addFirst(1);
-    list.addbw(10, 2);
+    list.addBetween(10, 2);
     list.addLast(5);
     list.delfirst();
     list.dellast();
-    list.delbw(6);
+    list.delBetween(6);
 
     list.looprev();
     list.recrev();
