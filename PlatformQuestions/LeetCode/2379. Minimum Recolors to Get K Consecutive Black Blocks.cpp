@@ -4,12 +4,12 @@ using namespace std;
 int minimumRecolors(string blocks, int k)
 {
     const int n = blocks.size();
-    int ans = INT_MAX;
-    int recolors = count(blocks.begin(), blocks.end(), 'W');
-    ans = min(ans, recolors);
+    int recolors = count(blocks.begin(), blocks.begin() + k, 'W');
+    int ans = recolors;
     for (int l = 0, r = k; r < n; l++, r++)
     {
-        recolors += (blocks[r] == 'W') - (blocks[l] == 'W');
+        recolors -= blocks[l] == 'W';
+        recolors += blocks[r] == 'W';
         ans = min(ans, recolors);
     }
 
